@@ -13,14 +13,11 @@ export default function About() {
           <div>
             {/* Sanskrit pronunciation and meaning visual */}
             <div className="bg-white p-8 rounded-2xl shadow-lg mb-8 hover-lift">
-              <h3 className="text-3xl font-serif font-bold text-taupe mb-4 text-center">TRIVĀRA</h3>
-              <div className="text-center text-coffee mb-4">
-                <span className="text-sm tracking-wider">[trih / VAH / ruh] (noun)</span>
-              </div>
-              <div className="w-full h-px bg-sand mb-6"></div>
-              <p className="text-gray-600 leading-relaxed text-center">
-                Born from the Sanskrit union of <strong>Tri</strong> (three) and <strong>Vara</strong> (blessings), it represents the three gifts we cultivate: strength of body, clarity of mind, and peace of soul.
-              </p>
+              <img 
+                src="/attached_assets/image_1755550303349.png"
+                alt="Trivāra Sanskrit meaning - strength of body, clarity of mind, peace of soul" 
+                className="w-full rounded-xl mb-4"
+              />
             </div>
           </div>
           
