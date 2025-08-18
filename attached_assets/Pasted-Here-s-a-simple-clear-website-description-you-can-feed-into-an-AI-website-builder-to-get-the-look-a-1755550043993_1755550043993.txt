@@ -1,0 +1,48 @@
+Here’s a simple, clear website description you can feed into an AI website builder to get the look and feel you want for Trivāra Pilates. I kept it minimal (like you said — only classes and maybe special events), smooth on laptop and mobile, and with “Book Classes” always visible:
+
+Website Description for AI Builder
+
+Business Name: Trivāra Pilates
+Tagline: Breathe. Balance. Bloom.
+
+About Section (short):
+Trivāra Pilates is a boutique Reformer Pilates studio in Scarborough. Born from the Sanskrit words Tri (three) and Vara (blessings), we represent the three gifts we cultivate: strength of body, clarity of mind, and peace of soul.
+
+Hero Section (Landing):
+	•	Large, welcoming image with diverse people doing Pilates.
+	•	Text overlay:
+	•	“Reformer Pilates | Scarborough”
+	•	“Trivāra: The Power of Three”
+	•	“Breathe. Balance. Bloom.”
+	•	A “Book a Class” button (always floating in view on both desktop and mobile).
+
+Navigation (very simple):
+	•	Home
+	•	Classes
+	•	Special Events
+	•	About
+	•	Contact
+
+Classes Section:
+	•	Short descriptions of class types (Reformer Pilates, Group Sessions, Private Sessions).
+	•	Easy “Book Now” buttons beside each class.
+
+Special Events Section (Optional):
+	•	Highlights of upcoming workshops, community events, or seasonal offers.
+
+About Section (mini):
+	•	Short note on the meaning of Trivāra.
+	•	Emphasis on community, inclusivity, and a boutique studio vibe.
+
+Footer:
+	•	Contact info (address in Scarborough, email, phone).
+	•	Social links (Instagram, TikTok, Facebook).
+	•	Newsletter sign-up for early access & special pricing.
+
+Design Notes:
+	•	Minimal, clean, earthy tones (beige, brown, cream — matching your branding).
+	•	Smooth scrolling, modern fonts.
+	•	“Book Classes” button always pinned at the top or bottom right for easy access.
+	•	Optimized for both laptop and mobile.
+
+Would you like me to also draft example copy for each section (like how the Classes or About page text could read), so your AI builder has actual content blocks to work with?

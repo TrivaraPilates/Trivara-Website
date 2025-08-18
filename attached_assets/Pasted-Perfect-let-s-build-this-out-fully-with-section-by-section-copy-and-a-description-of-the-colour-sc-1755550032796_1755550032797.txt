@@ -1,0 +1,75 @@
+Perfect — let’s build this out fully with section-by-section copy and a description of the colour scheme + design style so your AI website builder has everything it needs.
+
+🌿 Trivāra Pilates Website Draft
+
+Colour Scheme & Design Style
+
+	•	Palette:
+	•	Warm Neutrals: Beige, cream, sand (backgrounds)
+	•	Earthy Browns: Chocolate, coffee, taupe (leggings, accents, headers)
+	•	Soft Whites: Minimal, airy text areas, socks, contrast buttons
+	•	Typography: Modern serif for headings (luxury & boutique feel), clean sans-serif for body text (easy readability).
+	•	Imagery Style: Natural lighting, warm tones, diverse body types, soft shadows against cream/beige walls.
+	•	Design Vibe: Minimalist, elegant, welcoming — boutique fitness meets lifestyle brand.
+	•	UX: Smooth scrolling, sticky “Book Classes” button always visible, optimized for laptop and mobile.
+
+Hero Section
+
+Text Overlay:
+	•	Reformer Pilates | Scarborough
+	•	Trivāra: The Power of Three
+	•	Breathe. Balance. Bloom.
+
+Button:
+👉 Book a Class (always visible)
+
+About Section
+
+Header: What is Trivāra?
+Body Copy:
+Born from the Sanskrit words Tri (three) and Vara (blessings), Trivāra represents the three gifts we cultivate: strength of body, clarity of mind, and peace of soul.
+
+We are a boutique Reformer Pilates studio in Scarborough, built for community, inclusivity, and transformation. Whether you’re brand new or experienced, Trivāra is your space to move, breathe, and grow.
+
+Classes Section
+
+Header: Our Classes
+
+Reformer Pilates (Group)
+Challenge yourself with dynamic, full-body movements using the Reformer. Build strength, improve flexibility, and feel balanced.
+
+Private Reformer Sessions
+One-on-one sessions tailored to your goals and pace. Perfect for beginners or those seeking focused guidance.
+
+Special Series & Workshops
+Seasonal or themed classes designed to inspire and energize.
+
+👉 Each class block has a Book Now button.
+
+Special Events Section (Optional)
+
+Header: What’s Coming Up
+	•	Grand Opening Specials — Founder’s List early pricing & first-access bookings.
+	•	Community Classes — Bring a friend and experience Pilates together.
+	•	Seasonal Workshops — Mindfulness, movement, and balance beyond the Reformer.
+
+Contact Section
+
+Header: Stay Connected
+	•	Address: Scarborough, ON (Boutique Studio)
+	•	Email: hello@trivarapilates.com
+	•	Phone: (XXX) XXX-XXXX
+	•	Social Links: Instagram, TikTok, Facebook
+
+Newsletter Sign-Up:
+“Join our exclusive Founder’s List for early access & special pricing!”
+
+Footer
+
+	•	Logo (Trivāra)
+	•	Copyright © 2025 Trivāra Pilates
+	•	Links: Privacy Policy | Terms | Contact
+
+✅ With this setup, your site will feel smooth, limited, and focused — just like Sweat & Tonic but stripped down to only what you offer: classes + occasional events.
+
+Would you like me to also mock up a sample homepage layout wireframe (section by section, in order) so you can copy-paste that structure into your builder?
