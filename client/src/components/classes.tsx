@@ -27,7 +27,7 @@ export default function Classes() {
           <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover-lift">
             {/* Group reformer pilates class with diverse participants */}
             <img 
-              src="/attached_assets/image_1755550288682.png" 
+              src="/attached_assets/Photo 2025-08-03, 8 13 40 PM (1)_1755583307903.jpg" 
               alt="Group Reformer Pilates class" 
               className="w-full h-48 object-cover" 
             />
@@ -46,7 +46,7 @@ export default function Classes() {
           <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover-lift">
             {/* One-on-one private pilates session */}
             <img 
-              src="/attached_assets/image_1755550375280.png" 
+              src="/attached_assets/IMG_8689-Enhanced-NR_1755583314520.jpg" 
               alt="Private Reformer session with instructor" 
               className="w-full h-48 object-cover" 
             />
@@ -65,7 +65,7 @@ export default function Classes() {
           <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover-lift">
             {/* Workshop or special themed class setting */}
             <img 
-              src="/attached_assets/image_1755550387786.png" 
+              src="/attached_assets/IMG_7357-Enhanced-NR_1755583324253.jpg" 
               alt="Special workshop series in natural lighting" 
               className="w-full h-48 object-cover" 
             />

@@ -16,7 +16,7 @@ export default function Community() {
           <div>
             {/* Diverse group of women embracing after pilates class */}
             <img 
-              src="/attached_assets/image_1755550316073.png" 
+              src="/attached_assets/Photo 2025-08-03, 8 13 40 PM (1)_1755583307903.jpg" 
               alt="Diverse community of women supporting each other" 
               className="rounded-2xl shadow-lg w-full hover-lift" 
             />
