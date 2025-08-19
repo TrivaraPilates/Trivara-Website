@@ -65,8 +65,8 @@ export default function Classes() {
           <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover-lift">
             {/* Workshop or special themed class setting */}
             <img 
-              src="/images/joyful-stretch.jpg" 
-              alt="Special workshop series in natural lighting" 
+              src="/images/pilates-ring.png" 
+              alt="Pilates ring equipment for strength and control training" 
               className="w-full h-48 object-cover" 
             />
             <div className="p-8">
