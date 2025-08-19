@@ -14,7 +14,7 @@ export default function About() {
             {/* Sanskrit pronunciation and meaning visual */}
             <div className="bg-white p-8 rounded-2xl shadow-lg mb-8 hover-lift">
               <img 
-                src="/attached_assets/image_1755550303349.png"
+                src="/images/trivara-meaning.png"
                 alt="Trivāra Sanskrit meaning - strength of body, clarity of mind, peace of soul" 
                 className="w-full rounded-xl mb-4"
               />
