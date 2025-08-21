@@ -1,0 +1,164 @@
+Here’s a clear, builder‑ready brief you can paste into an AI website tool. It specifies what to build, how it should feel, and how it should perform.
+
+Trivāra Pilates — Build Brief (Detailed)
+
+Core Goals
+
+	•	Boutique, luxury feel with smooth scroll-triggered reveals.
+	•	Classes-first UX with a self-scrolling/scroll‑snap classes rail.
+	•	“Book Class” CTA always visible; booking via Momence embed.
+	•	Ultra-fast, responsive on desktop/tablet/mobile.
+
+Visual Style
+
+	•	Edges: Non‑rounded (0px radius) across buttons, cards, inputs, images → crisp, editorial look.
+	•	Palette: Warm neutrals (beige/cream/sand) for backgrounds; earthy browns (coffee/taupe/chocolate) for headings/accents; soft white for text blocks.
+	•	Type: Modern serif for headings (luxury), clean sans-serif for body (readability).
+	•	Imagery: Natural light, soft shadows, diverse models; videos and stills in warm tones.
+
+Layout & Sections (in order)
+
+	1.	Sticky Header
+	•	Left: Logo.
+	•	Right: Nav (Home, Classes, Special Events, About, Contact).
+	•	Persistent CTA: “Book Classes” (button stays visible on all screens; also a floating CTA bottom-right on mobile).
+	2.	Hero
+	•	Full-bleed image/video.
+	•	Text:
+	•	“Reformer Pilates | Scarborough”
+	•	“Trivāra: The Power of Three”
+	•	“Breathe. Balance. Bloom.”
+	•	Primary CTA: “Book a Class” → opens Momence embed (modal or slide-over).
+	•	Secondary: “See Classes” → smooth scroll to Classes.
+	3.	About (short)
+	•	2–3 sentences on Trivāra (meaning + boutique experience).
+	•	One supporting image/video with scroll-triggered reveal.
+	4.	Classes
+	•	Self-scroll rail (horizontal) with scroll-snap:
+	•	Cards: Reformer Group, Private Sessions, Special Series.
+	•	Each card: Title, 1–2 line description, “Book Now” (opens Momence).
+	•	Controls: arrows for desktop, swipe for mobile.
+	•	Optional “View All Classes” (anchors to a vertical list below on small screens).
+	5.	Special Events (optional)
+	•	Grid/list of upcoming workshops or community classes.
+	•	Each item has “Book Now” (Momence).
+	6.	Social / Gallery (optional)
+	•	4–6 images with staggered reveals.
+	•	Optional short video tile (muted autoplay loop on viewport).
+	7.	Contact / Footer
+	•	Address (Scarborough), email, phone, hours.
+	•	Social icons (IG, TikTok, FB).
+	•	Newsletter signup for Founder’s List.
+	•	Copyright.
+
+Interactions & Motion
+
+Scroll‑Triggered Effects (subtle, elegant)
+
+	•	Fade‑in + 20–40px upward slide as sections enter viewport.
+	•	Staggered reveals for grids (cards appear 80–120ms apart).
+	•	Parallax-lite (1–3% translate) on hero image/video on scroll for depth (optional).
+	•	Performance guardrails: Prefers-reduced-motion respected; animations capped at 200–400ms; GPU‑friendly transforms (opacity/translate only).
+
+Classes “Self‑Scroll”
+
+	•	Horizontal scroll container with:
+	•	scroll-snap-type: x mandatory, snap to each card.
+	•	Mouse wheel/trackpad support; swipe on touch.
+	•	Arrow buttons on desktop; progress dots on mobile.
+	•	Each card supports hover focus states; “Book Now” opens Momence modal.
+
+Transitions (site-wide)
+
+	•	Buttons/links: 150–200ms opacity/translate; no heavy blurs.
+	•	Images/videos: lazy-load with blur‑up or dominant-color placeholder.
+
+Booking Integration (Momence)
+
+	•	We will use Momence for scheduling, memberships, and payments.
+	•	Embed Strategy:
+	•	Primary flow: Open Momence in a modal (overlay) when clicking any “Book” CTA.
+	•	Fallback: Dedicated /book page with the full Momence embed.
+	•	Embed Placeholder:
+
+<!-- MOMENCE EMBED -->
+<div id="momence-widget"></div>
+<script src="https://momence.com/widget.js" async></script>
+<script>
+  window.addEventListener('load', () => {
+    Momence.init({
+      elementId: 'momence-widget',
+      studio: 'trivara-pilates',
+      view: 'schedule', // or 'memberships'
+      theme: 'light'
+    });
+  });
+</script>
+
+
+	•	Ensure modal trap focus, ESC closes, and background scroll locks.
+
+Video Usage
+
+	•	Short, silent clips showcasing reformer movement and studio vibe.
+	•	Autoplay muted, playsinline, loop; provide poster images.
+	•	Encode H.264 MP4 + WebM variants; keep each < 6–10 MB.
+	•	Lazy‑load below the fold; hero video preloaded only if LCP permits.
+
+Accessibility
+
+	•	Color contrast AA+ for text over images.
+	•	All images with descriptive alt; decorative images aria-hidden="true".
+	•	Keyboard nav for carousels and modals; focus outlines visible.
+	•	Respect prefers-reduced-motion.
+
+Performance Requirements
+
+	•	Lighthouse targets: Performance ≥ 90, SEO ≥ 95, Accessibility ≥ 95.
+	•	Images: Next‑gen formats (AVIF/WebP), responsive srcset, dimensions set to avoid CLS.
+	•	Lazy Loading: All non-hero media lazy; intersection observers for reveals.
+	•	Caching: Static assets with long‑term cache; HTML short TTL with revalidate.
+	•	Min JS: Only hydrate interactive parts (sticky CTA, classes rail, modal).
+	•	Preload: Hero font(s) and LCP media; defer everything else.
+
+Responsive Behavior
+
+	•	Breakpoints:
+	•	Mobile ≤ 640px: single-column; classes rail snaps full‑width; floating “Book” CTA bottom-right.
+	•	Tablet 641–1024px: 2‑column sections where relevant; classes rail shows 1.5–2 cards.
+	•	Desktop ≥ 1025px: generous whitespace; classes rail shows 3 cards; sticky header CTA.
+	•	Hit areas: Buttons ≥ 44×44px on touch devices.
+
+Components to Generate
+
+	•	Header (sticky) + floating CTA
+	•	Hero (image/video + copy + CTA)
+	•	Reveal wrapper (fade/slide/stagger)
+	•	ClassesRail (scroll‑snap, arrows, dots)
+	•	EventCard grid
+	•	MomenceModal (embed + focus management)
+	•	Footer (contact, social, signup)
+
+Copy (short)
+
+	•	Hero: Reformer Pilates | Scarborough — Trivāra: The Power of Three — Breathe. Balance. Bloom.
+	•	About: Boutique reformer studio cultivating strength of body, clarity of mind, and peace of soul.
+	•	Classes: Reformer Group • Private Sessions • Special Series & Workshops.
+	•	CTA: Book a Class.
+
+Nice‑to‑Haves (if the builder supports)
+
+	•	Content CMS for Classes/Events (easy updates).
+	•	SEO schema: LocalBusiness + Event for special events.
+	•	OG images for social sharing.
+
+Acceptance Criteria (QA)
+
+	•	Sticky “Book Classes” visible at all times (header on desktop + floating mobile).
+	•	Scroll-triggered reveals are smooth, subtle, and respect reduced‑motion.
+	•	Classes rail snaps cleanly; arrows and dots work; keyboard accessible.
+	•	Momence embed loads in modal and on /book; booking is fully functional.
+	•	Page loads fast; no layout shift; videos/images lazy‑load correctly.
+	•	Looks and works on Chrome, Safari, Firefox; mobile Safari included.
+
+If you want, I can turn this into a ready-to-use starter (Astro/Next) with the classes rail, reveal animations, and Momence modal wired up.

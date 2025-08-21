@@ -13,13 +13,26 @@ export default function Community() {
         </div>
         
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div>
+          <div className="space-y-6">
             {/* Diverse group of women embracing after pilates class */}
             <img 
               src="/images/community-front.jpg" 
               alt="Diverse community of women supporting each other" 
               className="rounded-2xl shadow-lg w-full hover-lift" 
             />
+            
+            {/* Reformer movement video */}
+            <div className="rounded-2xl shadow-lg overflow-hidden hover-lift">
+              <video 
+                className="w-full h-48 object-cover"
+                autoPlay 
+                muted 
+                loop 
+                playsInline
+              >
+                <source src="/videos/reformer-movement.mp4" type="video/mp4" />
+              </video>
+            </div>
           </div>
           
           <div>
