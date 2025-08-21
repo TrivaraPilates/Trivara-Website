@@ -12,17 +12,13 @@ export default function Hero() {
 
   return (
     <section id="home" className="relative h-screen flex items-center justify-center">
-      {/* Hero background video showing pilates workout in warm natural lighting */}
-      <video 
-        className="absolute inset-0 w-full h-full object-cover"
-        autoPlay 
-        muted 
-        loop 
-        playsInline
-        poster="/images/community-back.jpg"
-      >
-        <source src="/videos/pilates-workout.mp4" type="video/mp4" />
-      </video>
+      {/* Hero background image showing diverse women doing pilates in warm natural lighting */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: "url('/images/community-back.jpg')"
+        }}
+      ></div>
       <div className="absolute inset-0 gradient-overlay"></div>
       
       <div className="relative z-10 text-center text-white max-w-4xl mx-auto px-6 animate-fade-in">

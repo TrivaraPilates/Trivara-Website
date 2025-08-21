@@ -1,15 +1,19 @@
 import { Dumbbell, Brain, Heart } from "lucide-react";
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 
 export default function About() {
+  const titleRef = useScrollReveal();
+  const contentRef = useScrollReveal();
+
   return (
     <section id="about" className="py-20 bg-cream">
       <div className="max-w-6xl mx-auto px-6">
-        <div className="text-center mb-16">
+        <div ref={titleRef} className="scroll-reveal text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-serif font-bold text-taupe mb-8">What is Trivāra?</h2>
           <div className="w-24 h-1 bg-coffee mx-auto mb-8"></div>
         </div>
         
-        <div className="grid md:grid-cols-2 gap-16 items-center">
+        <div ref={contentRef} className="scroll-reveal grid md:grid-cols-2 gap-16 items-center">
           <div>
             {/* Sanskrit pronunciation and meaning visual */}
             <div className="bg-white p-8 rounded-2xl shadow-lg mb-8 hover-lift">
