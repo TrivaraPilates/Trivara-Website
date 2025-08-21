@@ -1,4 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.cdnfonts.com/css/higuen-elegant-serif');
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.cdnfonts.com/css/bodoni-flf');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -36,19 +39,26 @@
   --sidebar-accent-foreground: hsl(28, 25%, 20%);
   --sidebar-border: hsl(35, 24%, 85%);
   --sidebar-ring: hsl(23, 46%, 38%);
-  --font-sans: 'Inter', 'Open Sans', sans-serif;
-  --font-serif: 'Playfair Display', 'Georgia', serif;
+  --font-sans: 'Lora', 'Georgia', serif;
+  --font-serif: 'Higuen Elegant Serif', 'Georgia', serif;
+  --font-barlow: 'Barlow', sans-serif;
+  --font-bodoni: 'Bodoni FLF', serif;
   --font-mono: 'Menlo', monospace;
   --radius: 0px;
   
-  /* Trivara Brand Colors */
-  --warm-beige: hsl(39, 33%, 96%);
-  --cream: hsl(39, 43%, 97%);
-  --sand: hsl(35, 24%, 85%);
-  --chocolate: hsl(23, 66%, 28%);
-  --coffee: hsl(23, 46%, 38%);
-  --taupe: hsl(28, 25%, 20%);
-  --soft-white: hsl(0, 0%, 98%);
+  /* Original Brand Colors */
+  --dark-brown: #32180B;
+  --peach: #D8BCAC;
+  
+  /* Additional Brand Colors */
+  --brand-665446: #665446;
+  --brand-e1d4c5: #e1d4c5;
+  --brand-c5ae99: #c5ae99;
+  --brand-978170: #978170;
+  --brand-856e5f: #856e5f;
+  --brand-190f0b: #190f0b;
+  --brand-f4efe9: #f4efe9;
+  --brand-6b5043: #6b5043;
 }
 
 .dark {
@@ -92,7 +102,8 @@
   }
 
   body {
-    @apply font-sans antialiased bg-background text-foreground;
+    @apply antialiased bg-background text-foreground;
+    font-family: var(--font-sans);
   }
 
   html {
@@ -100,7 +111,15 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-serif;
+    font-family: var(--font-serif);
+  }
+  
+  .font-bodoni {
+    font-family: var(--font-bodoni);
+  }
+  
+  .font-barlow {
+    font-family: var(--font-barlow);
   }
 }
 
@@ -119,11 +138,25 @@
   }
   
   .brand-button {
-    @apply bg-coffee text-white hover:bg-taupe transition-colors duration-300;
+    background-color: var(--dark-brown);
+    color: var(--brand-f4efe9);
+    transition: all 0.3s ease;
+  }
+  
+  .brand-button:hover {
+    background-color: var(--brand-665446);
   }
   
   .brand-button-outline {
-    @apply border-2 border-coffee text-coffee hover:bg-coffee hover:text-white transition-colors duration-300;
+    border: 2px solid var(--dark-brown);
+    color: var(--dark-brown);
+    background-color: transparent;
+    transition: all 0.3s ease;
+  }
+  
+  .brand-button-outline:hover {
+    background-color: var(--dark-brown);
+    color: var(--brand-f4efe9);
   }
   
   .scroll-reveal {
@@ -141,18 +174,33 @@
   .stagger-2 { transition-delay: 0.2s; }
   .stagger-3 { transition-delay: 0.3s; }
   
-  .classes-scroll {
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
+  .classes-container {
+    overflow: hidden;
+    position: relative;
   }
   
-  .classes-scroll::-webkit-scrollbar {
-    display: none;
+  .classes-scroll {
+    display: flex;
+    gap: 2rem;
+    animation: autoScroll 60s linear infinite;
+    will-change: transform;
+  }
+  
+  .classes-scroll:hover {
+    animation-play-state: paused;
   }
   
   .classes-card {
-    scroll-snap-align: start;
     flex: 0 0 auto;
+    width: 320px;
+  }
+  
+  @keyframes autoScroll {
+    0% { 
+      transform: translateX(0); 
+    }
+    100% { 
+      transform: translateX(calc(-320px * 5 - 2rem * 4)); 
+    }
   }
 }

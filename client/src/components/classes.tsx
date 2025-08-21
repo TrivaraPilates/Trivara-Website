@@ -26,49 +26,29 @@ export default function Classes() {
   };
 
   return (
-    <section id="classes" className="py-20 bg-warm-beige">
+    <section id="classes" className="py-20" style={{backgroundColor: 'var(--brand-f4efe9)'}}>
       <div className="max-w-7xl mx-auto px-6">
         <div ref={revealRef} className="scroll-reveal text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-serif font-bold text-taupe mb-8">Our Classes</h2>
-          <div className="w-24 h-1 bg-coffee mx-auto mb-8"></div>
-          <p className="text-xl text-gray-700 max-w-2xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold mb-8" style={{fontFamily: 'var(--font-serif)', color: 'var(--dark-brown)'}}>Our Classes</h2>
+          <div className="w-24 h-1 mx-auto mb-8" style={{backgroundColor: 'var(--dark-brown)'}}></div>
+          <p className="text-xl max-w-2xl mx-auto font-bodoni" style={{color: 'var(--brand-665446)'}}>
             Discover the transformative power of Reformer Pilates through our carefully crafted class offerings
           </p>
         </div>
 
-        <div className="relative">
-          {/* Navigation arrows */}
-          <button
-            onClick={() => scroll('left')}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-lg p-3 hover:bg-gray-50 transition-colors"
-            aria-label="Previous classes"
-          >
-            <ChevronLeft className="w-6 h-6 text-taupe" />
-          </button>
-          
-          <button
-            onClick={() => scroll('right')}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-lg p-3 hover:bg-gray-50 transition-colors"
-            aria-label="Next classes"
-          >
-            <ChevronRight className="w-6 h-6 text-taupe" />
-          </button>
-
-          {/* Horizontal scrolling classes */}
-          <div 
-            ref={scrollRef}
-            className="classes-scroll flex gap-8 overflow-x-auto pb-4"
-          >
+        <div className="classes-container">
+          {/* Auto-rotating carousel */}
+          <div className="classes-scroll">
             {/* Reformer Pilates Group */}
-            <div className="classes-card bg-white overflow-hidden shadow-lg hover-lift w-80">
+            <div className="classes-card overflow-hidden shadow-lg hover-lift" style={{backgroundColor: 'var(--brand-f4efe9)'}}>
               <img 
                 src="/images/community-front.jpg" 
                 alt="Group Reformer Pilates class" 
                 className="w-full h-48 object-cover" 
               />
               <div className="p-8">
-                <h3 className="text-2xl font-serif font-bold text-taupe mb-4">Reformer Pilates (Group)</h3>
-                <p className="text-gray-600 mb-6 leading-relaxed">
+                <h3 className="text-2xl font-bold mb-4" style={{fontFamily: 'var(--font-serif)', color: 'var(--dark-brown)'}}>Reformer Pilates (Group)</h3>
+                <p className="mb-6 leading-relaxed" style={{color: 'var(--brand-665446)'}}>
                   Challenge yourself with dynamic, full-body movements using the Reformer. Build strength, improve flexibility, and feel balanced.
                 </p>
                 <Button onClick={handleBookNow} className="w-full brand-button font-semibold">
@@ -78,15 +58,15 @@ export default function Classes() {
             </div>
 
             {/* Private Sessions */}
-            <div className="classes-card bg-white overflow-hidden shadow-lg hover-lift w-80">
+            <div className="classes-card overflow-hidden shadow-lg hover-lift" style={{backgroundColor: 'var(--brand-f4efe9)'}}>
               <img 
                 src="/images/laptop-pilates.jpg" 
                 alt="Private Reformer session with instructor" 
                 className="w-full h-48 object-cover" 
               />
               <div className="p-8">
-                <h3 className="text-2xl font-serif font-bold text-taupe mb-4">Private Reformer Sessions</h3>
-                <p className="text-gray-600 mb-6 leading-relaxed">
+                <h3 className="text-2xl font-bold mb-4" style={{fontFamily: 'var(--font-serif)', color: 'var(--dark-brown)'}}>Private Reformer Sessions</h3>
+                <p className="mb-6 leading-relaxed" style={{color: 'var(--brand-665446)'}}>
                   One-on-one sessions tailored to your goals and pace. Perfect for beginners or those seeking focused guidance.
                 </p>
                 <Button onClick={handleBookNow} className="w-full brand-button font-semibold">
@@ -96,15 +76,15 @@ export default function Classes() {
             </div>
 
             {/* Special Series */}
-            <div className="classes-card bg-white overflow-hidden shadow-lg hover-lift w-80">
+            <div className="classes-card overflow-hidden shadow-lg hover-lift" style={{backgroundColor: 'var(--brand-f4efe9)'}}>
               <img 
                 src="/images/pilates-ring.png" 
                 alt="Pilates ring equipment for strength and control training" 
                 className="w-full h-48 object-cover" 
               />
               <div className="p-8">
-                <h3 className="text-2xl font-serif font-bold text-taupe mb-4">Special Series & Workshops</h3>
-                <p className="text-gray-600 mb-6 leading-relaxed">
+                <h3 className="text-2xl font-bold mb-4" style={{fontFamily: 'var(--font-serif)', color: 'var(--dark-brown)'}}>Special Series & Workshops</h3>
+                <p className="mb-6 leading-relaxed" style={{color: 'var(--brand-665446)'}}>
                   Seasonal or themed classes designed to inspire and energize. Explore new dimensions of your practice.
                 </p>
                 <Button onClick={handleBookNow} className="w-full brand-button font-semibold">
@@ -114,7 +94,7 @@ export default function Classes() {
             </div>
 
             {/* Video Showcase 1 */}
-            <div className="classes-card bg-white overflow-hidden shadow-lg hover-lift w-80">
+            <div className="classes-card overflow-hidden shadow-lg hover-lift" style={{backgroundColor: 'var(--brand-f4efe9)'}}>
               <video 
                 className="w-full h-48 object-cover"
                 muted 
@@ -126,15 +106,15 @@ export default function Classes() {
                 <source src="/videos/pilates-workout.mp4" type="video/mp4" />
               </video>
               <div className="p-8">
-                <h3 className="text-2xl font-serif font-bold text-taupe mb-4">Experience the Movement</h3>
-                <p className="text-gray-600 mb-6 leading-relaxed">
+                <h3 className="text-2xl font-bold mb-4" style={{fontFamily: 'var(--font-serif)', color: 'var(--dark-brown)'}}>Experience the Movement</h3>
+                <p className="mb-6 leading-relaxed" style={{color: 'var(--brand-665446)'}}>
                   See the precision and flow of Reformer Pilates in action. Every movement is intentional, every breath purposeful.
                 </p>
               </div>
             </div>
 
             {/* Video Showcase 2 */}
-            <div className="classes-card bg-white overflow-hidden shadow-lg hover-lift w-80">
+            <div className="classes-card overflow-hidden shadow-lg hover-lift" style={{backgroundColor: 'var(--brand-f4efe9)'}}>
               <video 
                 className="w-full h-48 object-cover"
                 muted 
@@ -146,8 +126,8 @@ export default function Classes() {
                 <source src="/videos/reformer-movement.mp4" type="video/mp4" />
               </video>
               <div className="p-8">
-                <h3 className="text-2xl font-serif font-bold text-taupe mb-4">Reformer Precision</h3>
-                <p className="text-gray-600 mb-6 leading-relaxed">
+                <h3 className="text-2xl font-bold mb-4" style={{fontFamily: 'var(--font-serif)', color: 'var(--dark-brown)'}}>Reformer Precision</h3>
+                <p className="mb-6 leading-relaxed" style={{color: 'var(--brand-665446)'}}>
                   Watch the elegant control and strength required for Reformer work. This is where transformation begins.
                 </p>
               </div>
