@@ -11,7 +11,7 @@ import StickyBookButton from "@/components/sticky-book-button";
 
 export default function Home() {
   return (
-    <div className="bg-warm-beige">
+    <div style={{backgroundColor: 'var(--brand-f4efe9)'}}>
       <Navigation />
       <Hero />
       <About />
