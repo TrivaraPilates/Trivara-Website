@@ -41,6 +41,11 @@ export function useFadeInOut() {
   const elementRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    // Initially make element visible
+    if (elementRef.current) {
+      elementRef.current.classList.add('visible');
+    }
+    
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -48,14 +53,17 @@ export function useFadeInOut() {
             entry.target.classList.add('visible');
             entry.target.classList.remove('hidden');
           } else {
-            entry.target.classList.remove('visible');
-            entry.target.classList.add('hidden');
+            // Only fade out when completely out of view
+            if (entry.intersectionRatio === 0) {
+              entry.target.classList.remove('visible');
+              entry.target.classList.add('hidden');
+            }
           }
         });
       },
       {
-        threshold: 0.15,
-        rootMargin: '-30px',
+        threshold: [0, 0.1],
+        rootMargin: '50px',
       }
     );
 

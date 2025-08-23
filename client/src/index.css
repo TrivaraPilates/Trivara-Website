@@ -206,9 +206,14 @@
   
   /* Enhanced fade animations */
   .fade-in-out {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  
+  .fade-in-out:not(.visible) {
     opacity: 0;
     transform: translateY(30px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
   }
   
   .fade-in-out.visible {
@@ -217,7 +222,7 @@
   }
   
   .fade-in-out.hidden {
-    opacity: 0;
-    transform: translateY(-15px);
+    opacity: 0.3;
+    transform: translateY(-10px);
   }
 }
