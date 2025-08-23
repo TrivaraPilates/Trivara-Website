@@ -203,4 +203,21 @@
       transform: translateX(calc(-320px * 5 - 2rem * 4)); 
     }
   }
+  
+  /* Enhanced fade animations */
+  .fade-in-out {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  
+  .fade-in-out.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .fade-in-out.hidden {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
 }

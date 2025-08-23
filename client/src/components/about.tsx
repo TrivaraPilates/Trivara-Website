@@ -1,14 +1,15 @@
 import { Dumbbell, Brain, Heart } from "lucide-react";
-import { useScrollReveal } from "@/hooks/use-scroll-reveal";
+import { useScrollReveal, useFadeInOut } from "@/hooks/use-scroll-reveal";
 
 export default function About() {
-  const titleRef = useScrollReveal();
+  const titleRef = useFadeInOut();
   const contentRef = useScrollReveal();
+  const pillarsRef = useFadeInOut();
 
   return (
     <section id="about" className="py-20" style={{backgroundColor: 'var(--peach)'}}>
       <div className="max-w-6xl mx-auto px-6">
-        <div ref={titleRef} className="scroll-reveal text-center mb-16">
+        <div ref={titleRef} className="fade-in-out text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-8" style={{fontFamily: 'var(--font-serif)', color: 'var(--dark-brown)'}}>What is Trivāra?</h2>
           <div className="w-24 h-1 mx-auto mb-8" style={{backgroundColor: 'var(--dark-brown)'}}></div>
         </div>
@@ -31,7 +32,7 @@ export default function About() {
             </p>
             
             {/* Three pillars */}
-            <div className="grid grid-cols-1 gap-6 mt-12">
+            <div ref={pillarsRef} className="fade-in-out grid grid-cols-1 gap-6 mt-12">
               <div className="flex items-center space-x-4">
                 <div className="w-12 h-12 flex items-center justify-center" style={{backgroundColor: 'var(--dark-brown)', color: 'var(--brand-f4efe9)'}}>
                   <Dumbbell className="w-6 h-6" />
