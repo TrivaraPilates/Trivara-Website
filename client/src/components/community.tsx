@@ -1,14 +1,17 @@
 import { Heart, HandHeart, Sprout } from "lucide-react";
-import { useFadeInOut } from "@/hooks/use-scroll-reveal";
+import { useFadeIn } from "../hooks/use-fade-in";
 
 export default function Community() {
-  const titleRef = useFadeInOut();
-  const contentRef = useFadeInOut();
+  const titleRef = useFadeIn();
+  const contentRef = useFadeIn({ threshold: 0.2 });
   
   return (
-    <section className="py-20" style={{backgroundColor: 'var(--brand-c5ae99)'}}>
+    <section className="py-20" style={{backgroundColor: 'var(--brand-f4efe9)'}}>
       <div className="max-w-6xl mx-auto px-6">
-        <div ref={titleRef} className="fade-in-out text-center mb-16">
+        <div 
+          ref={titleRef.ref} 
+          className={`fade-in-on-scroll ${titleRef.isVisible ? 'visible' : ''} text-center mb-16`}
+        >
           <h2 className="text-4xl md:text-5xl font-bold mb-8" style={{fontFamily: 'var(--font-serif)', color: 'var(--dark-brown)'}}>Our Community</h2>
           <div className="w-24 h-1 mx-auto mb-8" style={{backgroundColor: 'var(--dark-brown)'}}></div>
           <p className="text-xl max-w-2xl mx-auto" style={{color: 'var(--brand-665446)'}}>
@@ -16,7 +19,10 @@ export default function Community() {
           </p>
         </div>
         
-        <div ref={contentRef} className="fade-in-out grid md:grid-cols-2 gap-12 items-center">
+        <div 
+          ref={contentRef.ref} 
+          className={`fade-in-on-scroll ${contentRef.isVisible ? 'visible' : ''} grid md:grid-cols-2 gap-12 items-center`}
+        >
           <div className="space-y-6">
             {/* Diverse group of women embracing after pilates class */}
             <img 

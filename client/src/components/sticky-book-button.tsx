@@ -1,5 +1,5 @@
 import { CalendarPlus } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button } from "./ui/button";
 import MomenceModal, { useMomenceModal } from "./momence-modal";
 
 export default function StickyBookButton() {

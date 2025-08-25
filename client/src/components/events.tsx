@@ -1,19 +1,25 @@
 import { Star, Users, Leaf } from "lucide-react";
-import { useFadeInOut, useScrollReveal } from "@/hooks/use-scroll-reveal";
+import { useFadeIn } from "../hooks/use-fade-in";
 
 export default function Events() {
-  const titleRef = useFadeInOut();
-  const cardsRef = useScrollReveal();
+  const titleRef = useFadeIn();
+  const cardsRef = useFadeIn({ threshold: 0.2 });
   
   return (
     <section id="events" className="py-20" style={{backgroundColor: 'var(--brand-e1d4c5)'}}>
       <div className="max-w-6xl mx-auto px-6">
-        <div ref={titleRef} className="fade-in-out text-center mb-16">
+        <div 
+          ref={titleRef.ref} 
+          className={`fade-in-on-scroll ${titleRef.isVisible ? 'visible' : ''} text-center mb-16`}
+        >
           <h2 className="text-4xl md:text-5xl font-bold mb-8" style={{fontFamily: 'var(--font-serif)', color: 'var(--dark-brown)'}}>What's Coming Up</h2>
           <div className="w-24 h-1 mx-auto mb-8" style={{backgroundColor: 'var(--dark-brown)'}}></div>
         </div>
 
-        <div ref={cardsRef} className="scroll-reveal grid md:grid-cols-3 gap-8">
+        <div 
+          ref={cardsRef.ref} 
+          className={`fade-in-on-scroll ${cardsRef.isVisible ? 'visible' : ''} grid md:grid-cols-3 gap-8`}
+        >
           <div className="p-8 shadow-lg text-center hover-lift" style={{backgroundColor: 'var(--brand-f4efe9)'}}>
             <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6" style={{backgroundColor: 'var(--dark-brown)'}}>
               <Star className="text-2xl w-8 h-8" style={{color: 'var(--brand-f4efe9)'}} />

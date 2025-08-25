@@ -1,33 +1,36 @@
 import { useState } from "react";
-import { MapPin, Mail, Phone } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { useToast } from "@/hooks/use-toast";
 import { useMutation } from "@tanstack/react-query";
-import { apiRequest } from "@/lib/queryClient";
+import { Button } from "./ui/button";
+import { Input } from "./ui/input";
+import { useToast } from "../hooks/use-toast";
+import { apiRequest } from "../lib/queryClient";
 import { SiInstagram, SiTiktok, SiFacebook } from "react-icons/si";
-import { useFadeInOut, useScrollReveal } from "@/hooks/use-scroll-reveal";
+import { useFadeIn } from "../hooks/use-fade-in";
+import { MapPin, Mail, Phone } from "lucide-react";
 
 export default function Contact() {
   const [formData, setFormData] = useState({ name: "", email: "" });
   const { toast } = useToast();
-  const titleRef = useFadeInOut();
-  const contentRef = useScrollReveal();
-
+  const titleRef = useFadeIn();
+  const contentRef = useFadeIn({ threshold: 0.2 });
+  
   const newsletterMutation = useMutation({
     mutationFn: (data: { name: string; email: string }) =>
-      apiRequest("POST", "/api/newsletter", data),
+      apiRequest("/api/newsletter", {
+        method: "POST",
+        body: JSON.stringify(data),
+      }),
     onSuccess: () => {
       toast({
-        title: "Welcome to the Founder's List!",
-        description: "Thank you for joining! We'll be in touch with exclusive updates and early access.",
+        title: "Welcome to Trivāra!",
+        description: "You're now on our Founder's List. We'll be in touch soon!",
       });
       setFormData({ name: "", email: "" });
     },
-    onError: (error) => {
+    onError: () => {
       toast({
         title: "Something went wrong",
-        description: error.message || "Please try again later.",
+        description: "Please try again or contact us directly.",
         variant: "destructive",
       });
     },
@@ -38,7 +41,7 @@ export default function Contact() {
     if (!formData.name || !formData.email) {
       toast({
         title: "Please fill in all fields",
-        description: "Both name and email are required.",
+        description: "Name and email are required.",
         variant: "destructive",
       });
       return;
@@ -49,12 +52,18 @@ export default function Contact() {
   return (
     <section id="contact" className="py-20" style={{backgroundColor: 'var(--brand-856e5f)'}}>
       <div className="max-w-6xl mx-auto px-6">
-        <div ref={titleRef} className="fade-in-out text-center mb-16">
+        <div 
+          ref={titleRef.ref} 
+          className={`fade-in-on-scroll ${titleRef.isVisible ? 'visible' : ''} text-center mb-16`}
+        >
           <h2 className="text-4xl md:text-5xl font-bold mb-8" style={{fontFamily: 'var(--font-serif)', color: 'var(--brand-f4efe9)'}}>Stay Connected</h2>
           <div className="w-24 h-1 mx-auto mb-8" style={{backgroundColor: 'var(--peach)'}}></div>
         </div>
 
-        <div ref={contentRef} className="scroll-reveal grid md:grid-cols-2 gap-16">
+        <div 
+          ref={contentRef.ref} 
+          className={`fade-in-on-scroll ${contentRef.isVisible ? 'visible' : ''} grid md:grid-cols-2 gap-16`}
+        >
           {/* Contact Info */}
           <div className="space-y-8">
             <div>

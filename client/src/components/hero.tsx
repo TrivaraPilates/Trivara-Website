@@ -1,46 +1,91 @@
+import { useFadeIn } from "../hooks/use-fade-in";
+import { useState, useEffect } from "react";
+
 export default function Hero() {
-  const handleDiscoverClick = () => {
-    const element = document.querySelector('#about');
-    if (element) {
-      const offsetTop = element.getBoundingClientRect().top + window.scrollY - 80;
-      window.scrollTo({
-        top: offsetTop,
-        behavior: 'smooth'
-      });
-    }
-  };
+  const titleRef = useFadeIn();
+  const subtitleRef = useFadeIn({ threshold: 0.3 });
+  const ctaRef = useFadeIn({ threshold: 0.5 });
+  const [showHeroButton, setShowHeroButton] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      // Hide hero button after scrolling past 100px
+      setShowHeroButton(scrollTop < 100);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <section id="home" className="relative h-screen flex items-center justify-center">
-      {/* Hero background image showing diverse women doing pilates in warm natural lighting */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: "url('/images/community-back.jpg')"
-        }}
-      ></div>
-      <div className="absolute inset-0 gradient-overlay"></div>
-      
-      <div className="relative z-10 text-center text-white max-w-4xl mx-auto px-6 animate-fade-in">
-        <p className="text-lg md:text-xl font-medium mb-4 tracking-wider opacity-90 font-bodoni">REFORMER PILATES | SCARBOROUGH</p>
-        <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight" style={{fontFamily: 'var(--font-serif)'}}>
-          Trivāra:<br />
-          <span className="font-barlow" style={{color: 'var(--peach)'}}>The Power of Three</span>
-        </h1>
-        <p className="text-2xl md:text-3xl font-medium mb-8 font-bodoni" style={{color: 'var(--peach)'}}>
-          Breathe. Balance. Bloom.
-        </p>
-        <button 
-          onClick={handleDiscoverClick}
-          className="px-8 py-4 font-semibold text-lg transition-colors duration-300 transform hover:scale-105 shadow-xl"
-          style={{
-            backgroundColor: 'var(--brand-f4efe9)',
-            color: 'var(--dark-brown)',
-            border: 'none'
-          }}
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Video Background */}
+      <div className="absolute inset-0 z-0">
+        <video 
+          className="w-full h-full object-cover"
+          autoPlay 
+          muted 
+          loop 
+          playsInline
         >
-          Discover Your Journey
-        </button>
+          <source src="/videos/pilates-workout.mp4" type="video/mp4" />
+          {/* Fallback to image if video doesn't load */}
+          <img 
+            src="/images/joyful-stretch.jpg" 
+            alt="Woman doing joyful pilates stretch" 
+            className="w-full h-full object-cover"
+          />
+        </video>
+        {/* Dark overlay for better text readability */}
+        <div className="absolute inset-0 bg-black/50"></div>
+      </div>
+
+      {/* Content */}
+      <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
+        <div 
+          ref={titleRef.ref} 
+          className={`fade-in-on-scroll ${titleRef.isVisible ? 'visible' : ''} mb-8`}
+        >
+          <h1 className="text-5xl md:text-7xl font-bold text-white mb-6" style={{fontFamily: 'var(--font-serif)'}}>
+            Welcome to Trivāra
+          </h1>
+          <div className="w-32 h-1 mx-auto mb-8" style={{backgroundColor: 'var(--peach)'}}></div>
+        </div>
+        
+        <div 
+          ref={subtitleRef.ref} 
+          className={`fade-in-on-scroll ${subtitleRef.isVisible ? 'visible' : ''} mb-12`}
+        >
+          <p className="text-xl md:text-2xl text-white/90 leading-relaxed max-w-2xl mx-auto">
+            Where strength meets serenity. Discover the transformative power of Reformer Pilates in our boutique Scarborough studio.
+          </p>
+        </div>
+        
+        <div 
+          className={`space-y-4 md:space-y-0 md:space-x-6 md:flex md:justify-center transition-all duration-500 ease-in-out ${
+            showHeroButton ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform translate-y-4 pointer-events-none'
+          }`}
+        >
+            <button className="px-8 py-4 bg-white text-dark-brown font-semibold text-lg hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-lg">
+              Book Your Class
+            </button>
+            <button className="px-8 py-4 border-2 border-white text-white font-semibold text-lg hover:bg-white hover:text-dark-brown transition-all duration-300 transform hover:scale-105">
+              Learn More
+            </button>
+          </div>
+        </div>
+
+      {/* Scroll indicator */}
+      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
+        <div className="flex flex-col items-center space-y-0 animate-bounce">
+          <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 13l5 5 5-5" />
+          </svg>
+          <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 13l5 5 5-5" />
+          </svg>
+        </div>
       </div>
     </section>
   );

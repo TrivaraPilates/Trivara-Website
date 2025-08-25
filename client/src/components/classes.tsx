@@ -1,6 +1,6 @@
-import { Button } from "@/components/ui/button";
-import { useToast } from "@/hooks/use-toast";
-import { useScrollReveal } from "@/hooks/use-scroll-reveal";
+import { Button } from "./ui/button";
+import { useToast } from "../hooks/use-toast";
+import { useScrollReveal } from "../hooks/use-scroll-reveal";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useRef } from "react";
 import MomenceModal, { useMomenceModal } from "./momence-modal";

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { X } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button } from "./ui/button";
 
 interface MomenceModalProps {
   isOpen: boolean;
@@ -19,6 +19,8 @@ export default function MomenceModal({ isOpen, onClose }: MomenceModalProps) {
           <button
             onClick={onClose}
             className="p-2 hover:bg-gray-100 transition-colors"
+            title="Close modal"
+            aria-label="Close modal"
           >
             <X className="w-5 h-5" />
           </button>
