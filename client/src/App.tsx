@@ -4,12 +4,15 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "./components/ui/toaster";
 import { TooltipProvider } from "./components/ui/tooltip";
 import Home from "./pages/home";
+import BookClasses from "./pages/book-classes";
 import NotFound from "./pages/not-found";
+import FloatingBookButton from "./components/floating-book-button";
 
 function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
+      <Route path="/book-classes" component={BookClasses} />
       <Route component={NotFound} />
     </Switch>
   );
@@ -20,6 +23,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <Toaster />
+        <FloatingBookButton />
         <Router />
       </TooltipProvider>
     </QueryClientProvider>

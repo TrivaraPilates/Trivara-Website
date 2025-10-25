@@ -204,6 +204,49 @@
     }
   }
   
+  /* Instructors Carousel Styles - Copy from classes */
+.instructors-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 150px 150px 0 0;
+}
+  
+  .instructors-scroll {
+    display: flex;
+    gap: 1rem;
+    animation: instructorsAutoScroll 30s linear infinite;
+    will-change: transform;
+  }
+  
+  .instructors-scroll:hover {
+    animation-play-state: paused;
+  }
+  
+  .instructors-card {
+    flex: 0 0 auto;
+    width: 272px;
+    border-radius: 6px;
+    overflow: visible;
+  }
+  
+  @keyframes instructorsAutoScroll {
+    0% { 
+      transform: translateX(0); 
+    }
+    100% { 
+      transform: translateX(calc(-272px * 4 - 1rem * 3)); 
+    }
+  }
+  
+  /* Wellness Articles Grid Styles */
+  .wellness-card {
+    transition: transform 0.3s ease;
+  }
+  
+  .wellness-card:hover {
+    transform: translateY(-4px);
+  }
+  
   /* Enhanced fade animations */
   .fade-in-out {
     opacity: 1;
@@ -262,5 +305,267 @@
       opacity: 1;
       transform: translateY(0);
     }
+  }
+  
+  /* Simple smooth scrolling with minimal offset */
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 30px; /* Just a tiny bit of offset */
+  }
+}
+
+/* Custom Animated Button - Normal Fill */
+.animated-button {
+  display: inline-block;
+  width: 150px;
+  height: 50px;
+  border-radius: 10px;
+  border: 1px solid var(--brand-c5ae99);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+  z-index: 1;
+  background: transparent;
+  cursor: pointer;
+}
+
+.animated-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: var(--peach);
+  transition: width 0.3s ease-in-out;
+  z-index: -1;
+}
+
+.animated-button:hover::before {
+  width: 100%;
+}
+
+.animated-button:hover span {
+  color: var(--brand-f4efe9);
+  transition: 0.3s;
+}
+
+.animated-button span {
+  color: white !important;
+  font-size: 18px;
+  transition: all 0.3s ease-in-out;
+  font-weight: 600;
+}
+
+/* Navbar Book Now Button - Normal Fill */
+.nav-book-button {
+  display: inline-block;
+  width: 120px;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid var(--brand-c5ae99);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+  z-index: 1;
+  background: transparent;
+  cursor: pointer;
+}
+
+.nav-book-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: var(--peach);
+  transition: width 0.3s ease-in-out;
+  z-index: -1;
+}
+
+.nav-book-button:hover::before {
+  width: 100%;
+}
+
+.nav-book-button:hover span {
+  color: var(--brand-f4efe9);
+  transition: 0.3s;
+}
+
+.nav-book-button span {
+  color: var(--dark-brown) !important;
+  font-size: 14px;
+  transition: all 0.3s ease-in-out;
+  font-weight: 600;
+}
+
+/* Simple Button Style */
+.uiverse-button {
+  --color: #32180b;
+  font-family: inherit;
+  display: inline-block;
+  width: 13em;
+  height: 2.4em;
+  line-height: 2.3em;
+  margin: 20px;
+  position: relative;
+  cursor: pointer;
+  border: 1.5px solid var(--color);
+  transition: all 0.3s ease;
+  z-index: 1;
+  font-size: 15px;
+  border-radius: 6px;
+  font-weight: 500;
+  color: var(--color);
+  background: transparent;
+}
+
+.uiverse-button:hover {
+  background: var(--color);
+  color: #fff;
+}
+
+.uiverse-button:active {
+  background: #1a0f05;
+}
+
+/* Filled version of the same button */
+.uiverse-button-filled {
+  --color: #32180b;
+  font-family: inherit;
+  display: inline-block;
+  width: 8em;
+  height: 2.6em;
+  line-height: 2.5em;
+  margin: 20px;
+  position: relative;
+  cursor: pointer;
+  border: 2px solid var(--color);
+  transition: all 0.3s ease;
+  z-index: 1;
+  font-size: 17px;
+  border-radius: 6px;
+  font-weight: 500;
+  color: #fff;
+  background: var(--color);
+}
+
+.uiverse-button-filled:hover {
+  background: #1a0f05;
+  border-color: #1a0f05;
+}
+
+.uiverse-button-filled:active {
+  background: #0d0703;
+}
+
+/* BOOK NOW Button - Custom styling */
+.book-now-button {
+  --color: #32180b; /* Trivāra dark brown */
+  font-family: "Barlow", sans-serif;
+  display: inline-block;
+  width: 7.5em;
+  height: 2.6em;
+  line-height: 2.5em;
+  margin: 0;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  border: 2px solid var(--color);
+  transition: color 0.5s ease;
+  z-index: 1;
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  background: var(--color);
+  text-transform: uppercase;
+  border-radius: 6px; /* ← Slightly rounded corners */
+  letter-spacing: 0.05em;
+}
+
+.book-now-button::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  background: var(--color);
+  height: 150px;
+  width: 200px;
+  border-radius: 50%; /* keeps circular hover motion */
+  top: 100%;
+  left: 100%;
+  transition: all 0.7s ease;
+}
+
+/* Hover: brown fill + white text */
+.book-now-button:hover {
+  color: #fff;
+}
+
+.book-now-button:hover::before {
+  top: -30px;
+  left: -30px;
+}
+
+/* Ultimate floating button fix - Nav Bar Integrated */
+#floating-book-button {
+  position: fixed !important;
+  top: 4.84rem !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  z-index: 9999999 !important;
+  isolation: isolate !important;
+  pointer-events: auto !important;
+}
+
+#floating-book-button button {
+  position: relative !important;
+  z-index: 9999999 !important;
+  isolation: isolate !important;
+  background-color: #32180b !important;
+  color: #fff !important;
+  border: 2px solid #32180b !important;
+  border-radius: 6px !important;
+  padding: 0.5rem 1rem !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+  font-family: "Barlow", sans-serif !important;
+  cursor: pointer !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2) !important;
+  transform: translateZ(0) !important;
+  display: block !important;
+  width: auto !important;
+  min-width: 100px !important;
+  transition: all 0.3s ease !important;
+}
+
+#floating-book-button button:hover {
+  background-color: #1a0f05 !important;
+  border-color: #1a0f05 !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.3) !important;
+}
+
+/* Precise, repeatable crop for the PNG padding */
+.logo-trim {
+  /* Scale up to crop out padding, then translate to center */
+  transform: scale(2.0) translateY(-15%);
+  transform-origin: center;
+}
+
+/* Fine-tuning for narrower viewports (optional) */
+@media (max-width: 1024px) {
+  .logo-trim {
+    transform: scale(2.2) translateY(-18%);
+    transform-origin: center;
+  }
+}
+
+@media (max-width: 640px) {
+  .logo-trim {
+    transform: scale(2.4) translateY(-20%);
+    transform-origin: center;
   }
 }

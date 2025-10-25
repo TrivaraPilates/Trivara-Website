@@ -3,8 +3,12 @@ import Hero from "../components/hero";
 import About from "../components/about";
 import Philosophy from "../components/philosophy";
 import Classes from "../components/classes";
+import Pricing from "../components/pricing";
 import Events from "../components/events";
-import Community from "../components/community";
+import Instructors from "../components/instructors";
+import InstagramGrid from "../components/instagram-grid";
+import Wellness from "../components/wellness";
+import Reviews from "../components/reviews";
 import Contact from "../components/contact";
 import Footer from "../components/footer";
 
@@ -13,11 +17,15 @@ export default function Home() {
     <div className="bg-warm-beige">
       <Navigation />
       <Hero />
-      <About />
-      <Philosophy />
-      <Classes />
-      <Events />
-      <Community />
+      {/* <About /> */}
+      {/* <Philosophy /> */}
+      {/* <Classes /> */}
+      <Pricing />
+      {/* <Events /> */}
+      <Instructors />
+      <InstagramGrid />
+      <Reviews />
+      <Wellness />
       <Contact />
       <Footer />
     </div>

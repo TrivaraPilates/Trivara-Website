@@ -4,7 +4,7 @@ export default function Philosophy() {
   const contentRef = useFadeIn({ threshold: 0.2 });
   
   return (
-    <section className="py-20" style={{backgroundColor: 'var(--brand-f4efe9)'}}>
+    <section id="philosophy" className="py-20" style={{backgroundColor: 'var(--brand-f4efe9)'}}>
       <div className="max-w-4xl mx-auto px-6 text-center">
         <div 
           ref={contentRef.ref} 

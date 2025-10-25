@@ -1,0 +1,388 @@
+/* ===== Brand tokens ===== */
+:root {
+  --black: #000000;
+  --hover-fill: rgba(225,212,197,.26);   /* #e1d4c5 at 26% */
+  --outline-26: rgba(0,0,0,.26);
+  --book-bg: #32180b;
+  --book-text: #ffffff;
+
+  --font-heading: "Lora", serif;
+  --font-ui: "Barlow", system-ui, sans-serif;
+
+  --t: 220ms ease;
+  --shadow-float: 0 10px 24px rgba(0,0,0,.18);
+}
+
+/* Page wrapper (put this section on a hero/landing) */
+.wrapper {
+  position: relative;
+  min-height: 80vh;
+  color: var(--black);
+  font-family: var(--font-heading);
+}
+
+/* ==== Bottom boxes ==== */
+.boxRow {
+  position: relative;
+  width: min(1200px, 92vw);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4vw;
+  z-index: 2;
+  padding: 30rem 0 4rem 0;
+}
+
+.box {
+  position: relative;
+  border: 1px solid transparent;
+  background: transparent;
+  height: 10rem;
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  overflow: hidden;
+}
+
+.box span { 
+  font-family: var(--font-heading); 
+  font-size: 1.25rem; 
+  letter-spacing: .2px; 
+  position: relative;
+  z-index: 3;
+}
+
+/* Thin black top line always visible */
+.box::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #000000;
+  z-index: 2; /* stays above the fill */
+}
+
+/* The fill background (animated) */
+.box::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0;
+  background: #e1d4c5;
+  z-index: 1; /* stays under the line and text */
+  transition: height 0.6s ease-in-out;
+}
+
+/* Fill down from top */
+.box:hover::after {
+  height: 100%;
+}
+
+.box:hover {
+  transform: translateY(-2px);
+}
+
+/* Keep filled when active */
+.active::after {
+  height: 100%;
+}
+
+.active { 
+  box-shadow: var(--shadow-float);
+}
+
+.dim .box:not(.active) { 
+  opacity: .55; 
+}
+
+/* ==== Panels ==== */
+.panel {
+  position: absolute;
+  top: -2rem;
+  left: 0;
+  right: 0;
+  width: min(1600px, 96vw);
+  margin: 0 auto;
+  display: none;
+  z-index: 3;
+}
+
+.visible { 
+  display: block; 
+}
+
+.panelInner {
+  background: var(--hover-fill);
+  border: 1px solid var(--outline-26);
+  backdrop-filter: blur(1px);
+  padding: 3.5rem 2.5rem;
+  animation: panelIn 300ms ease both;
+}
+
+/* Remove background only for Offerings panel */
+.panelOfferings .panelInner {
+  background: transparent;
+  border: none;
+  backdrop-filter: none;
+}
+
+@keyframes panelIn {
+  from { 
+    opacity: 0; 
+    transform: translateY(14px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+.centerBig { 
+  text-align: center; 
+  font-size: 2rem; 
+  margin: 1rem 0; 
+}
+
+/* ==== Cards ==== */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 1.5rem;
+  align-items: stretch;
+  justify-items: stretch;
+  width: 100%;
+}
+
+.card {
+  border: 1px solid var(--outline-26);
+  background: rgba(255,255,255,.08);
+  padding: 2rem 1.5rem 0;
+  text-align: center;
+  border-radius: 8px;
+  transition: transform var(--t), box-shadow var(--t), background var(--t), border-color var(--t), opacity var(--t);
+  display: flex;
+  flex-direction: column;
+  height: 380px;
+  width: 100%;
+  max-width: none;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-float);
+  background: var(--hover-fill);
+  border-color: var(--outline-26);
+}
+
+.card:hover .bookBtn {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Keep all card text in a centered, narrow column */
+.card h4,
+.card p {
+  max-width: 26ch;          /* ← tweak between 22–28ch to match your look */
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  text-wrap: balance;       /* nicer multi-line centering (Chrome/Safari/Edge) */
+  line-height: 1.45;
+}
+
+/* Slightly bigger title with tighter spacing */
+.card h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-top: 0.25rem;
+  margin-bottom: 0.9rem;
+}
+
+/* Regular paragraphs */
+.card p { 
+  margin: 0.45rem 0;
+}
+
+/* Price line + per-class note stay together neatly */
+.muted {
+  white-space: nowrap;       /* keeps "$20/class" on one line */
+  font-size: .95rem;
+  opacity: .8;
+  margin-left: .25rem;
+}
+
+/* --- refined vertical rhythm and proportions --- */
+.cardContent {
+  flex: 1;
+  display: grid;
+  grid-template-areas:
+    "title"
+    "blurb"
+    "classes"
+    "price"
+    "perclass";
+  grid-template-rows: auto var(--blurb-row, 1fr) auto auto auto;
+  row-gap: 1.25rem;           /* more airy vertical spacing */
+  justify-items: center;
+  align-content: start;
+}
+
+.cardText {
+  display: contents;          /* no box; its children become grid items */
+}
+
+/* Narrow, centered measure for nicer wrapping */
+.cardContent > * { 
+  max-width: 26ch; 
+  text-align: center; 
+  text-wrap: balance; 
+}
+
+/* Title */
+.card h4 {
+  grid-area: title;
+  margin: 0;
+  font-weight: 700;
+  font-size: 1.2rem;
+  line-height: 1.2;
+  margin-bottom: 0.25rem;     /* subtle separation from blurb */
+}
+
+/* Blurb */
+.cardText p:nth-of-type(1) {
+  grid-area: blurb;
+  margin: 0;
+  line-height: 1.4;           /* slightly tighter than 1.45 */
+  min-height: calc(3.2 * 1.4em);
+  padding: 0 0.25rem;         /* gentle inset */
+}
+
+/* Classes */
+.cardText p:nth-of-type(2) {
+  grid-area: classes;
+  margin-top: 0.75rem;        /* clear separation from blurb */
+  margin-bottom: 0.25rem;
+}
+
+/* Price block (price + per-class grouped) */
+.cardText p:nth-of-type(3) {
+  grid-area: price;
+  margin: 0;
+  font-weight: 700;
+  font-size: 1.1rem;
+  line-height: 1.1;
+}
+
+.cardText .muted {
+  grid-area: perclass;
+  margin: 0;
+  font-size: 0.9rem;
+  opacity: 0.8;
+  white-space: nowrap;
+  margin-top: 0.25rem;        /* keeps it close to the price */
+}
+
+/* Extra breathing room before button */
+.bookBtn {
+  margin-top: 1.5rem;
+  width: calc(100% + 3rem);
+  margin-left: -1.5rem;
+  margin-right: -1.5rem;
+  border-radius: 6px;
+  border: none;
+  background: var(--book-bg);
+  color: var(--book-text);
+  font-family: var(--font-ui);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.95rem;
+  padding: 0.9rem 0;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease, background var(--t), box-shadow var(--t);
+}
+
+.bookBtn:hover {
+  background: #4a2a15;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+}
+
+.bookBtn:active {
+  transform: translateY(0);
+}
+
+.bookBtn:focus-visible { 
+  outline: 2px solid var(--black); 
+  outline-offset: 2px; 
+}
+
+/* bounce-in when panel appears */
+.bounceIn { 
+  animation: btnBounce .9s ease-out .06s both; 
+}
+
+@keyframes btnBounce {
+  0% { 
+    opacity: 0; 
+    transform: translateY(18px) scale(.98); 
+  }
+  45% { 
+    opacity: 1; 
+    transform: translateY(-6px) scale(1.03); 
+  }
+  70% { 
+    transform: translateY(3px) scale(.995); 
+  }
+  100% { 
+    transform: translateY(0) scale(1); 
+  }
+}
+
+/* ==== Responsive ==== */
+@media (max-width: 1400px) { 
+  .cards { 
+    gap: 1rem;
+    max-width: 1600px;
+  } 
+}
+
+@media (max-width: 1200px) { 
+  .cards { 
+    gap: 0.75rem;
+    max-width: 1400px;
+  } 
+}
+
+@media (max-width: 1000px) { 
+  .cards { 
+    gap: 0.5rem;
+    max-width: 1200px;
+  } 
+}
+
+@media (max-width: 800px) {
+  .boxRow { 
+    gap: 2.5vw; 
+  }
+  .box { 
+    height: 8.5rem; 
+  }
+  .cards { 
+    gap: 0.25rem;
+    max-width: 1000px;
+  }
+  .panelInner { 
+    padding: 2.25rem 1.25rem; 
+  }
+}

@@ -1,177 +1,271 @@
-import { useState } from "react";
-import { useMutation } from "@tanstack/react-query";
+import { useState, useEffect } from "react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
+import { Textarea } from "./ui/textarea";
 import { useToast } from "../hooks/use-toast";
-import { apiRequest } from "../lib/queryClient";
 import { SiInstagram, SiTiktok, SiFacebook } from "react-icons/si";
 import { useFadeIn } from "../hooks/use-fade-in";
 import { MapPin, Mail, Phone } from "lucide-react";
 
 export default function Contact() {
-  const [formData, setFormData] = useState({ name: "", email: "" });
+  const [formData, setFormData] = useState({ 
+    firstName: "", 
+    lastName: "", 
+    email: "", 
+    phoneNumber: "", 
+    subject: "", 
+    message: "",
+    discoveryAnswer: ""
+  });
   const { toast } = useToast();
   const titleRef = useFadeIn();
   const contentRef = useFadeIn({ threshold: 0.2 });
-  
-  const newsletterMutation = useMutation({
-    mutationFn: (data: { name: string; email: string }) =>
-      apiRequest("/api/newsletter", {
-        method: "POST",
-        body: JSON.stringify(data),
-      }),
-    onSuccess: () => {
+
+  // Submit to Momence API
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!formData.firstName || !formData.lastName || !formData.email || !formData.message) {
       toast({
-        title: "Welcome to Trivāra!",
-        description: "You're now on our Founder's List. We'll be in touch soon!",
+        title: "Please fill in all required fields",
+        description: "First name, last name, email, and message are required.",
+        variant: "destructive",
       });
-      setFormData({ name: "", email: "" });
-    },
-    onError: () => {
+      return;
+    }
+
+    try {
+      const response = await fetch('https://momence.com/api/lead-form', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          host_id: '92063',
+          token: '3AXe3Ar27P',
+          country_code: 'ca',
+          data_collect_consent: 'required',
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          email: formData.email,
+          phoneNumber: formData.phoneNumber,
+          subject: formData.subject,
+          message: formData.message,
+          discoveryAnswer: formData.discoveryAnswer
+        })
+      });
+
+      if (response.ok) {
+        toast({
+          title: "Message Sent!",
+          description: "Thank you for reaching out. We'll get back to you soon!",
+        });
+        setFormData({ 
+          firstName: "", 
+          lastName: "", 
+          email: "", 
+          phoneNumber: "", 
+          subject: "", 
+          message: "",
+          discoveryAnswer: ""
+        });
+      } else {
+        throw new Error('Failed to submit form');
+      }
+    } catch (error) {
       toast({
         title: "Something went wrong",
         description: "Please try again or contact us directly.",
         variant: "destructive",
       });
-    },
-  });
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!formData.name || !formData.email) {
-      toast({
-        title: "Please fill in all fields",
-        description: "Name and email are required.",
-        variant: "destructive",
-      });
-      return;
     }
-    newsletterMutation.mutate(formData);
   };
 
   return (
-    <section id="contact" className="py-20" style={{backgroundColor: 'var(--brand-856e5f)'}}>
+    <section id="contact" className="py-20" style={{backgroundColor: '#fff7f1'}}>
       <div className="max-w-6xl mx-auto px-6">
         <div 
-          ref={titleRef.ref} 
-          className={`fade-in-on-scroll ${titleRef.isVisible ? 'visible' : ''} text-center mb-16`}
-        >
-          <h2 className="text-4xl md:text-5xl font-bold mb-8" style={{fontFamily: 'var(--font-serif)', color: 'var(--brand-f4efe9)'}}>Stay Connected</h2>
-          <div className="w-24 h-1 mx-auto mb-8" style={{backgroundColor: 'var(--peach)'}}></div>
-        </div>
-
-        <div 
           ref={contentRef.ref} 
-          className={`fade-in-on-scroll ${contentRef.isVisible ? 'visible' : ''} grid md:grid-cols-2 gap-16`}
+          className={`fade-in-on-scroll ${contentRef.isVisible ? 'visible' : ''} grid md:grid-cols-2 gap-16 items-start`}
         >
           {/* Contact Info */}
-          <div className="space-y-8">
-            <div>
-              <h3 className="text-2xl font-bold mb-6" style={{fontFamily: 'var(--font-serif)', color: 'var(--brand-f4efe9)'}}>Visit Our Studio</h3>
-              <div className="space-y-4">
-                <div className="flex items-start space-x-4">
-                  <MapPin className="text-xl mt-1" style={{color: 'var(--peach)'}} />
-                  <div>
-                    <p className="font-semibold" style={{color: 'var(--brand-f4efe9)'}}>Boutique Studio Location</p>
-                    <p style={{color: 'var(--brand-c5ae99)'}}>Scarborough, ON</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-center space-x-4">
-                  <Mail className="text-xl" style={{color: 'var(--peach)'}} />
-                  <div>
-                    <p className="font-semibold" style={{color: 'var(--brand-f4efe9)'}}>hello@trivarapilates.com</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-center space-x-4">
-                  <Phone className="text-xl" style={{color: 'var(--peach)'}} />
-                  <div>
-                    <p className="font-semibold" style={{color: 'var(--brand-f4efe9)'}}>Coming Soon</p>
-                  </div>
-                </div>
-              </div>
+          <div className="space-y-8 w-full">
+            {/* Contact Image */}
+            <div className="text-center">
+              <img 
+                src="/images/Contact1.png" 
+                alt="Two women sharing a joyful moment on a yoga mat" 
+                className="w-full h-auto rounded-lg shadow-lg mx-auto"
+                style={{borderRadius: '12px', minHeight: '700px', objectFit: 'cover'}}
+              />
             </div>
 
-            {/* Social Links */}
-            <div>
-              <h4 className="text-xl font-semibold mb-4" style={{fontFamily: 'var(--font-serif)', color: 'var(--brand-f4efe9)'}}>Follow Our Journey</h4>
-              <div className="flex space-x-4">
-                <a 
-                  href="#" 
+            {/* Contact Information */}
+            <div className="text-center mt-8">
+              {/* Address / Phone */}
+              <div className="mb-6">
+                <p className="text-lg font-medium" style={{ fontFamily: 'Lora, serif', color: '#32180b' }}>
+                  2181 McNicoll Ave, Unit 3
+                </p>
+                <p className="text-lg font-medium" style={{ fontFamily: 'Lora, serif', color: '#32180b' }}>
+                  Scarborough, ON
+                </p>
+                <p className="text-lg font-medium" style={{ fontFamily: 'Lora, serif', color: '#32180b' }}>
+                  647.492.3773
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Contact Form */}
+          <div className="p-8 flex flex-col justify-center" style={{height: 'fit-content'}}>
+            <h3 className="text-3xl font-bold mb-8 text-center" style={{fontFamily: 'Lora, serif', color: '#32180b'}}>We'd love to hear from you!</h3>
+            
+            <form onSubmit={handleSubmit} className="space-y-6">
+              {/* First Name and Last Name - Two Columns */}
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium mb-2" style={{color: '#32180b', fontFamily: 'Lora, serif'}}>First Name</label>
+                  <Input 
+                    type="text" 
+                    placeholder="" 
+                    value={formData.firstName}
+                    onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
+                    className="w-full px-4 py-3 border-0 focus:outline-none focus:ring-0 bg-transparent"
+                    style={{borderBottom: '1px solid #c5ae99', borderRadius: '0px'}}
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium mb-2" style={{color: '#32180b', fontFamily: 'Lora, serif'}}>Last Name</label>
+                  <Input 
+                    type="text" 
+                    placeholder="" 
+                    value={formData.lastName}
+                    onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+                    className="w-full px-4 py-3 border-0 focus:outline-none focus:ring-0 bg-transparent"
+                    style={{borderBottom: '1px solid #c5ae99', borderRadius: '0px'}}
+                  />
+                </div>
+              </div>
+
+              {/* Email and Phone - Two Columns */}
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium mb-2" style={{color: '#32180b', fontFamily: 'Lora, serif'}}>Email Address</label>
+                  <Input 
+                    type="email" 
+                    placeholder=""
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    className="w-full px-4 py-3 border-0 focus:outline-none focus:ring-0 bg-transparent"
+                    style={{borderBottom: '1px solid #c5ae99', borderRadius: '0px'}}
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium mb-2" style={{color: '#32180b', fontFamily: 'Lora, serif'}}>Phone Number</label>
+                  <Input 
+                    type="tel" 
+                    placeholder=""
+                    value={formData.phoneNumber}
+                    onChange={(e) => setFormData({ ...formData, phoneNumber: e.target.value })}
+                    className="w-full px-4 py-3 border-0 focus:outline-none focus:ring-0 bg-transparent"
+                    style={{borderBottom: '1px solid #c5ae99', borderRadius: '0px'}}
+                  />
+                </div>
+              </div>
+
+              {/* Subject - Single Column */}
+              <div>
+                <label className="block text-sm font-medium mb-2" style={{color: '#32180b', fontFamily: 'Lora, serif'}}>Subject</label>
+                <Input 
+                  type="text" 
+                  placeholder=""
+                  value={formData.subject}
+                  onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                  className="w-full px-4 py-3 border-0 focus:outline-none focus:ring-0 bg-transparent"
+                  style={{borderBottom: '1px solid #c5ae99', borderRadius: '0px'}}
+                />
+              </div>
+
+              {/* Message - Single Column */}
+              <div>
+                <label className="block text-sm font-medium mb-2" style={{color: '#32180b', fontFamily: 'Lora, serif'}}>Message</label>
+                <Textarea 
+                  placeholder=""
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  className="w-full px-4 py-3 border-0 focus:outline-none focus:ring-0 bg-transparent min-h-[80px] resize-none"
+                  style={{borderBottom: '1px solid #c5ae99', borderRadius: '0px'}}
+                />
+              </div>
+
+              {/* Discovery Question */}
+              <div>
+                <label className="block text-sm font-medium mb-2" style={{color: '#32180b', fontFamily: 'Lora, serif'}}>How did you find out about us?</label>
+                <Input 
+                  type="text" 
+                  placeholder=""
+                  value={formData.discoveryAnswer}
+                  onChange={(e) => setFormData({ ...formData, discoveryAnswer: e.target.value })}
+                  className="w-full px-4 py-3 border-0 focus:outline-none focus:ring-0 bg-transparent"
+                  style={{borderBottom: '1px solid #c5ae99', borderRadius: '0px'}}
+                />
+              </div>
+
+              {/* Submit Button */}
+              <div className="flex justify-center pt-4">
+                <Button 
+                  type="submit" 
+                  className="w-1/2 py-8 font-semibold"
+                  style={{
+                    backgroundColor: '#856e5f',
+                    color: '#ffffff',
+                    borderRadius: '8px',
+                    fontFamily: 'Barlow, sans-serif',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.5px'
+                  }}
+                >
+                  Submit
+                </Button>
+              </div>
+            </form>
+
+            {/* Social Media Icons - Directly Below Form */}
+            <div className="text-center mt-16">
+              <div className="flex justify-center gap-4">
+                <a
+                  href="#"
                   className="w-12 h-12 rounded-full flex items-center justify-center transition-colors duration-300"
-                  style={{backgroundColor: 'var(--dark-brown)', color: 'var(--brand-f4efe9)'}}
-                  onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'var(--peach)'}
-                  onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'var(--dark-brown)'}
+                  style={{ backgroundColor: '#856e5f', color: '#ffffff' }}
+                  onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#32180b')}
+                  onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#856e5f')}
                   aria-label="Follow us on Instagram"
                 >
                   <SiInstagram className="w-6 h-6" />
                 </a>
-                <a 
-                  href="#" 
+                <a
+                  href="#"
                   className="w-12 h-12 rounded-full flex items-center justify-center transition-colors duration-300"
-                  style={{backgroundColor: 'var(--dark-brown)', color: 'var(--brand-f4efe9)'}}
-                  onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'var(--peach)'}
-                  onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'var(--dark-brown)'}
+                  style={{ backgroundColor: '#856e5f', color: '#ffffff' }}
+                  onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#32180b')}
+                  onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#856e5f')}
                   aria-label="Follow us on TikTok"
                 >
                   <SiTiktok className="w-6 h-6" />
                 </a>
-                <a 
-                  href="#" 
+                <a
+                  href="#"
                   className="w-12 h-12 rounded-full flex items-center justify-center transition-colors duration-300"
-                  style={{backgroundColor: 'var(--dark-brown)', color: 'var(--brand-f4efe9)'}}
-                  onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'var(--peach)'}
-                  onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'var(--dark-brown)'}
+                  style={{ backgroundColor: '#856e5f', color: '#ffffff' }}
+                  onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#32180b')}
+                  onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#856e5f')}
                   aria-label="Follow us on Facebook"
                 >
                   <SiFacebook className="w-6 h-6" />
                 </a>
               </div>
             </div>
-          </div>
-
-          {/* Newsletter Signup */}
-          <div className="p-8 shadow-lg hover-lift" style={{backgroundColor: 'var(--brand-f4efe9)'}}>
-            <h3 className="text-2xl font-bold mb-4" style={{fontFamily: 'var(--font-serif)', color: 'var(--dark-brown)'}}>Join Our Founder's List</h3>
-            <p className="mb-6" style={{color: 'var(--brand-665446)'}}>
-              Join our exclusive Founder's List for early access & special pricing! Be the first to experience the transformative power of Trivāra.
-            </p>
-            
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div>
-                <Input 
-                  type="text" 
-                  placeholder="Full Name" 
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-4 py-3 border focus:outline-none focus:ring-2"
-                  style={{borderColor: 'var(--brand-c5ae99)', borderRadius: '0px'}}
-                />
-              </div>
-              <div>
-                <Input 
-                  type="email" 
-                  placeholder="Email Address"
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full px-4 py-3 border focus:outline-none focus:ring-2"
-                  style={{borderColor: 'var(--brand-c5ae99)', borderRadius: '0px'}}
-                />
-              </div>
-              <Button 
-                type="submit" 
-                disabled={newsletterMutation.isPending}
-                className="w-full brand-button py-3 px-6 font-semibold"
-                style={{borderRadius: '0px'}}
-              >
-                {newsletterMutation.isPending ? "Joining..." : "Join the Founder's List"}
-              </Button>
-            </form>
-            
-            <p className="text-sm mt-4 text-center" style={{color: 'var(--brand-665446)'}}>
-              Get exclusive access to grand opening specials and priority booking.
-            </p>
           </div>
         </div>
       </div>
