@@ -31,7 +31,9 @@ export default defineConfig({
   build: {
     outDir: path.resolve(__dirname, "dist"),
     emptyOutDir: true,
+    assetsDir: "assets",
   },
+  publicDir: path.resolve(__dirname, "client", "public"),
   server: {
     fs: {
       strict: true,
